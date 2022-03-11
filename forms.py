@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snacks</title>
-</head>
-<body>
-    <h1> New Snack </h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {% for field in form 
-            if field.widget.input_type != 'hidden' %}
-        <p>
-            {{field.label}}
-            {{field}}
+from flask_wtf import FlaskForm
+from wtforms import StringField,FloatField, BooleanField, IntegerField, RadioField,SelectField
+#import the fields you will use.
 
-            {% for err in field.errors %}
-            {{err}}
-            {% endfor %}
-        </p>
-        {%endfor%}
-    <button> Add Snack </button>
-    </form>
-    
-</body>
-</html> 
+
+class AddSnackForm(FlaskForm): #the parent class is FlaskForm
+    """Form for adding new snacks"""
+    name = StringField("Snack Name")
+    price = FloatField("Price in USD")
+    quantity = IntegerField("How many packets?")
+    is_healty = BooleanField("Is the snack healthy?")
+    category = RadioField("Category", choices=[('IC' , 'Ice-cream'), ('chips' , 'Patoto Chips'), ('CA', 'Candy/Sweet')])
+    new_category = SelectField("New_category" , choices= [('TH' , 'Thai Snack'),('US' , 'US Snack'), ('K' , 'Korean Snack')])
+
+
+#list of choices is the list of tuples. When we use radio button we need to add choices.
+#radio:name=BooleanField("Name" , choices(as keyword argument)[('abb' , 'choice'), ('' , '')])
+#IC is the what it sends to server Ice-cream is what we see
