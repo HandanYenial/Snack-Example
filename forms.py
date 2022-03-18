@@ -19,10 +19,11 @@ class AddSnackForm(FlaskForm): #the parent class is FlaskForm
 
 #list of choices is the list of tuples. When we use radio button we need to add choices.
 #radio:name=BooleanField("Name" , choices(as keyword argument)[('abb' , 'choice'), ('' , '')])
+# category = RadioField("Category", choices=[('IC' , 'Ice-cream'), ('chips' , 'Patoto Chips'), ('CA', 'Candy/Sweet')])
 #IC is the what it sends to server Ice-cream is what we see
 
 #validators
-#inputRequired() Validates that input provided
+#InputRequired() Validates that input provided
 #Length: Length(min=-1, max=-1, message=None)
 #NumberRange: NumberRange(min=None,max=None,message=None)
 #Optional=Allows empty input and stops validation
